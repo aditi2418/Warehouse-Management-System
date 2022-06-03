@@ -1,0 +1,598 @@
+<%-- 
+    Document   : warehouse-data
+    Created on : 18 Oct, 2021, 2:37:38 AM
+    Author     : 91934
+--%>
+
+<%@page import="java.sql.SQLException"%>
+<%-- 
+    Document   : table-data
+    Created on : 16 Oct, 2021, 10:41:19 PM
+    Author     : 91934
+--%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="db.DBConnector"%>
+<%@page import="java.sql.Statement"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    
+<!-- Mirrored from phantom-themes.com/modern/Source/admin1/table-data.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 04 Oct 2021 06:17:23 GMT -->
+<head>
+          <link rel="icon" href="ai-logo.png">
+        <!-- Title -->
+        <title>Warehouse-Acron International</title>
+        
+        <meta content="width=device-width, initial-scale=1" name="viewport"/>
+        <meta charset="UTF-8">
+        <meta name="description" content="Admin Dashboard Template" />
+        <meta name="keywords" content="admin,dashboard" />
+        <meta name="author" content="Steelcoders" />
+        
+        <!-- Styles -->
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+        <link href="assets/plugins/pace-master/themes/blue/pace-theme-flash.css" rel="stylesheet"/>
+        <link href="assets/plugins/uniform/css/uniform.default.min.css" rel="stylesheet"/>
+        <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="assets/plugins/fontawesome/css/font-awesome.css" rel="stylesheet" type="text/css"/>
+        <link href="assets/plugins/line-icons/simple-line-icons.css" rel="stylesheet" type="text/css"/>	
+        <link href="assets/plugins/offcanvasmenueffects/css/menu_cornerbox.css" rel="stylesheet" type="text/css"/>	
+        <link href="assets/plugins/waves/waves.min.css" rel="stylesheet" type="text/css"/>	
+        <link href="assets/plugins/switchery/switchery.min.css" rel="stylesheet" type="text/css"/>
+        <link href="assets/plugins/3d-bold-navigation/css/style.css" rel="stylesheet" type="text/css"/>	
+        <link href="assets/plugins/slidepushmenus/css/component.css" rel="stylesheet" type="text/css"/>
+        <link href="assets/plugins/datatables/css/jquery.datatables.min.css" rel="stylesheet" type="text/css"/>	
+        <link href="assets/plugins/datatables/css/jquery.datatables_themeroller.css" rel="stylesheet" type="text/css"/>	
+        <link href="assets/plugins/x-editable/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet" type="text/css">
+        <link href="assets/plugins/bootstrap-datepicker/css/datepicker3.css" rel="stylesheet" type="text/css"/>
+        
+        <!-- Theme Styles -->
+        <link href="assets/css/modern.min.css" rel="stylesheet" type="text/css"/>
+        <link href="assets/css/themes/green.css" class="theme-color" rel="stylesheet" type="text/css"/>
+        <link href="assets/css/custom.css" rel="stylesheet" type="text/css"/>
+        
+        <script src="assets/plugins/3d-bold-navigation/js/modernizr.js"></script>
+        <script src="assets/plugins/offcanvasmenueffects/js/snap.svg-min.js"></script>
+        
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        
+    </head>
+    <body class="page-header-fixed">
+        <% if(session.getAttribute("username")==null)
+            {  
+                response.sendRedirect("index.html");
+            }
+        %>
+                    <div class="overlay"></div>
+        <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-s1">
+            <h3><span class="pull-left">Chat</span><a href="javascript:void(0);" class="pull-right" id="closeRight"><i class="fa fa-times"></i></a></h3>
+            <div class="slimscroll">
+                <a href="javascript:void(0);" class="showRight2"><img src="assets/images/avatar2.png" alt=""><span>Sandra smith<small>Hi! How're you?</small></span></a>
+                <a href="javascript:void(0);" class="showRight2"><img src="assets/images/avatar3.png" alt=""><span>Amily Lee<small>Hi! How're you?</small></span></a>
+                <a href="javascript:void(0);" class="showRight2"><img src="assets/images/avatar4.png" alt=""><span>Christopher Palmer<small>Hi! How're you?</small></span></a>
+                <a href="javascript:void(0);" class="showRight2"><img src="assets/images/avatar5.png" alt=""><span>Nick Doe<small>Hi! How're you?</small></span></a>
+                <a href="javascript:void(0);" class="showRight2"><img src="assets/images/avatar2.png" alt=""><span>Sandra smith<small>Hi! How're you?</small></span></a>
+                <a href="javascript:void(0);" class="showRight2"><img src="assets/images/avatar3.png" alt=""><span>Amily Lee<small>Hi! How're you?</small></span></a>
+                <a href="javascript:void(0);" class="showRight2"><img src="assets/images/avatar4.png" alt=""><span>Christopher Palmer<small>Hi! How're you?</small></span></a>
+                <a href="javascript:void(0);" class="showRight2"><img src="assets/images/avatar5.png" alt=""><span>Nick Doe<small>Hi! How're you?</small></span></a>
+            </div>
+		</nav>
+        <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-s2">
+           
+           
+           
+        </nav>
+
+        <div class="menu-wrap">
+            <nav class="profile-menu">
+                <div class="profile"><img src="assets/images/profile-menu-image.png" width="60" alt="David Green"/><span>David Green</span></div>
+                <div class="profile-menu-list">
+              <a href="#"><i class="fa fa-envelope"></i><span>Messages</span></a>
+                    <a href="#"><i class="fa fa-comment"></i><span>Comments</span></a>
+                </div>
+            </nav>
+            <button class="close-button" id="close-button">Close Menu</button>
+        </div>
+        <form class="search-form" action="#" method="GET">
+            <div class="input-group">
+                <input type="text" name="search" class="form-control search-input" placeholder="Search...">
+                <span class="input-group-btn">
+                    <button class="btn btn-default close-search waves-effect waves-button waves-classic" type="button"><i class="fa fa-times"></i></button>
+                </span>
+            </div><!-- Input Group -->
+        </form><!-- Search Form -->
+        <main class="page-content content-wrap">
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <div class="sidebar-pusher">
+                        <a href="javascript:void(0);" class="waves-effect waves-button waves-classic push-sidebar">
+                            <i class="fa fa-bars"></i>
+                        </a>
+                    </div>
+                    <div class="logo-box">
+                        <a  class="logo-text"><img src="icon1.png" width="100" height="30"></a>
+                    </div><!-- Logo Box -->
+                    <div class="search-button">
+                        <a href="javascript:void(0);" class="waves-effect waves-button waves-classic show-search"><i class="fa fa-search"></i></a>
+                    </div>
+                    <div class="topmenu-outer">
+                        <div class="top-menu">
+                            <ul class="nav navbar-nav navbar-left">
+                                <li>		
+                                    <a href="javascript:void(0);" class="waves-effect waves-button waves-classic sidebar-toggle"><i class="fa fa-bars"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#cd-nav" class="waves-effect waves-button waves-classic cd-nav-trigger"><i class="fa fa-diamond"></i></a>
+                                </li>
+                                <li>		
+                                    <a href="javascript:void(0);" class="waves-effect waves-button waves-classic toggle-fullscreen"><i class="fa fa-expand"></i></a>
+                                </li>
+                            
+                                        <li class="li-group">
+                                            </ul >
+                                   
+                            <ul class="nav navbar-nav navbar-right">
+                               
+                                <li>
+                                    <a href="LogOutAuthenticator" class="log-out waves-effect waves-button waves-classic">
+                                        <span><i class="fa fa-sign-out m-r-xs"></i>Log out</span>
+                                    </a>
+                                </li>
+                               
+                            </ul><!-- Nav -->
+                        </div><!-- Top Menu -->
+                    </div>
+                </div>
+            </div><!-- Navbar -->
+         <div class="page-sidebar sidebar">
+                <div class="page-sidebar-inner slimscroll">
+                    
+                    <ul class="menu accordion-menu">
+                        <li ><a href="home.jsp" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-home"></span><p>Dashboard</p></a></li>
+                        <li><a href="sale-data.jsp" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-briefcase"></span><p>Sale</p></a></li>
+                        <li><a href="transfer-data.jsp" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-send"></span><p>Transfer</p></a></li>
+                        
+                         <li class="droplink"><a href="#" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-shopping-cart"></span><p>Purchase</p><span class="arrow"></span></a>
+                            <ul class="sub-menu">
+                                <li><a href="import-data.jsp">Import</a></li>
+                                <li><a href="domestic-data.jsp">Domestic</a></li>
+                                
+                            </ul>
+                        </li>
+                     <li><a href="table-data.jsp" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-sort"></span><p>Transaction</p></a></li>
+                        <li><a href="item-data.jsp" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-th-list"></span><p>Item</p></a></li>
+                        <li class="active"><a href="warehouse.jsp" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-th"></span><p>Warehouse</p></a></li>
+                        <li><a href="party-data.jsp" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-th-large"></span><p>Party</p></a></li>
+                        <li><a href="LogOutAuthenticator" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-log-out"></span><p>Log Out</p></a></li>
+                        
+                        
+   
+                </div><!-- Page Sidebar Inner -->
+              </div><!-- Page Sidebar -->
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Page Sidebar -->
+             <div class="page-inner">
+                <div class="page-title" style="margin-bottom: 0px;">
+                    <h3><b>Warehouse</b></h3>
+                    <div class="page-breadcrumb">
+                        <ol class="breadcrumb">
+                            <li><a href="home.jsp">Home</a></li>
+                            <li class="active">Warehouse</li>
+                        </ol>
+                    </div>
+                </div>      <div id="main-wrapper">
+                    <!-- Row -->
+                    
+                    
+                    <h3 class="m-b-sm">Draggable Panels</h3>
+                    <div class="sortable">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="panel panel-white" style="background: #33333352;">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Grey</h3>
+                                        <div class="panel-control">
+                                            <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Expand/Collapse" class="panel-collapse"><i class="icon-arrow-down"></i></a>
+                                            <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Reload" class="panel-reload"><i class="icon-reload"></i></a>
+                                 </div>
+                                    </div>
+                                    <div class="panel-body" style="margin-left:20%">
+                                        <table>
+                                          <tr>
+  
+    <th>Material Name</th>
+    <th style="padding-left: 71px;">Quantity</th>
+   
+  </tr>
+  <tr>
+      <%
+       try
+       {
+           DBConnector db=new DBConnector();
+           Statement st=db.getStatement();
+           String query1="select * from items where color='grey'";
+           ResultSet rs1=st.executeQuery(query1);
+           while(rs1.next())
+           {
+           %>
+    <td><%out.println(rs1.getString("Material_Name"));%></td>
+    <td style="padding-left: 71px;"><%out.println(rs1.getFloat("Stored_Quantity"));%></td>
+ 
+  </tr>
+   <% } %>
+                                        </table>
+                                   </div>
+                                </div>
+                                        <div class="panel panel-white" style="background: #f9f9f9;">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">White</h3>
+                                        <div class="panel-control">
+                                            <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Expand/Collapse" class="panel-collapse"><i class="icon-arrow-down"></i></a>
+                                            <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Reload" class="panel-reload"><i class="icon-reload"></i></a>
+                                 </div>
+                                    </div>
+                                    <div class="panel-body" style="margin-left:20%">
+                                        <table>
+                                          <tr>
+    <th>Material Name</th>
+    <th style="padding-left: 71px;">Quantity</th>
+   
+  </tr>
+  <% String query5="select * from items where color='white'";
+           ResultSet rs5=st.executeQuery(query5);
+           while(rs5.next())
+           {
+           %>       
+  <tr>
+    <td><%out.println(rs5.getString("Material_Name"));%></td>
+    <td style="padding-left: 71px;"><%out.println(rs5.getFloat("Stored_Quantity"));%></td>
+  
+  </tr>
+  <% } %>
+                                        </table>
+                                   </div>
+                                </div>
+                                <div class="panel panel-purple" style="background: #f25656;">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Dead Stock</h3>
+                                        <div class="panel-control">
+                                            <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Expand/Collapse" class="panel-collapse"><i class="icon-arrow-down"></i></a>
+                                            <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Reload" class="panel-reload"><i class="icon-reload"></i></a>
+                                      
+                                        </div>
+                                    </div>
+                                    <div class="panel-body" style="margin-left:20%">
+                                     <table>
+                                          <tr>
+                                                                  
+    <th>Material Name</th>
+    <th style="padding-left: 71px;">Quantity</th>
+   
+  </tr>
+   <% String query2="select * from items where color='dead'";
+           ResultSet rs2=st.executeQuery(query2);
+           while(rs2.next())
+           {
+           %>       
+  <tr>
+    <td><%out.println(rs2.getString("Material_Name"));%></td>
+    <td style="padding-left: 71px;"><%out.println(rs2.getFloat("Stored_Quantity"));%></td>
+  
+  </tr>
+  <% } %>
+  
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+  
+                            <div class="col-md-6">
+                                <div class="panel panel-green" style="background: #337ab7;">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Blue</h3>
+                                        <div class="panel-control">
+                                            <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Expand/Collapse" class="panel-collapse"><i class="icon-arrow-down"></i></a>
+                                            <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Reload" class="panel-reload"><i class="icon-reload"></i></a>
+                                      </div>
+                                    </div>
+                                    <div class="panel-body" style="margin-left:20%">
+                                      <table>
+                                          <tr>
+    <th>Material Name</th>
+    <th style="padding-left: 71px;">Quantity</th>
+   
+  </tr>
+  <% String query3="select * from items where color='blue'";
+           ResultSet rs3=st.executeQuery(query3);
+           while(rs3.next())
+           {
+           %>       
+  <tr>
+    <td><%out.println(rs3.getString("Material_Name"));%></td>
+    <td style="padding-left: 71px;"><%out.println(rs3.getFloat("Stored_Quantity"));%></td>
+  
+  </tr>
+  <% } %>
+  
+                                        </table> </div>
+                                </div>
+                                <div class="panel panel-red" style="background: #a94442;">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Others</h3>
+                                        <div class="panel-control">
+                                            <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Expand/Collapse" class="panel-collapse"><i class="icon-arrow-down"></i></a>
+                                            <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Reload" class="panel-reload"><i class="icon-reload"></i></a>
+                                      </div>
+                                    </div>
+                                    <div class="panel-body" style="margin-left:20%">
+                                     <table>
+                                          <tr>
+    <th>Material Name</th>
+    <th style="padding-left: 71px;">Quantity</th>
+   
+  </tr>
+  <% String query4="select * from items where color='others'";
+           ResultSet rs4=st.executeQuery(query4);
+           while(rs4.next())
+           {
+           %>       
+  <tr>
+    <td><%out.println(rs4.getString("Material_Name"));%></td>
+    <td style="padding-left: 71px;"><%out.println(rs4.getFloat("Stored_Quantity"));%></td>
+  
+  </tr>
+  <% } %>
+                                        </table></div>
+                                    
+                                    
+                                </div>
+                            </div>
+                            
+                           
+                            <div class="col-md-6">
+                                
+                            </div>
+                                     <div class="col-md-6">
+                                <div class="panel panel-green"style="background: #edb925;">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Off Grade</h3>
+                                        <div class="panel-control">
+                                            <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Expand/Collapse" class="panel-collapse"><i class="icon-arrow-down"></i></a>
+                                            <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Reload" class="panel-reload"><i class="icon-reload"></i></a>
+                                      </div>
+                                    </div>
+                                    <div class="panel-body"style="margin-left:20%">
+                                      <table>
+                                          <tr>
+    <th>Material Name</th>
+    <th style="padding-left: 71px;">Quantity</th>
+   
+  </tr>
+  <% String query6="select * from items where color='resin'";
+           ResultSet rs6=st.executeQuery(query6);
+           while(rs6.next())
+           {
+           %>       
+  <tr>
+    <td><%out.println(rs6.getString("Material_Name"));%></td>
+    <td style="padding-left: 71px;"><%out.println(rs6.getFloat("Stored_Quantity"));%></td>
+  
+  </tr>
+  <% }
+}
+  catch(SQLException e)
+{
+System.out.println(e);
+}%>
+                                        </table> </div>
+                                </div>
+                          
+                                     </div>
+                                   
+                        <!-- Row -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            
+                            
+                                
+                            <div class="panel panel-white" >
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">Warehouses</h4>
+                                </div>
+                                <div class="panel-body">
+                                    <button type="button" class="btn btn-success m-b-sm" data-toggle="modal" data-target="#myModal">Add Warehouse</button>
+                                    <!-- Modal -->
+                                                     <!-- Modal -->
+                                                    <form id="add-row-form" action="AddWarehouseServlet" method="Post">
+                                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                    <h4 class="modal-title" id="myModalLabel" style="font-weight: 800; font-size:1.5em; text-decoration: underline; ">New Sale</h4>                                                </div>
+                                                <div class="modal-body" style="margin-top: 3%;">
+                                                    
+                                                        
+                                                    
+                                                        <div class="form-group">
+                                                            <input type="text" name="warehouse" id="name-input" class="form-control" placeholder="New Warehouse Name" required>
+                                                        </div>
+                                                    
+                                                                                                            
+                                                        
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                    <button type="submit"  class="btn btn-success">Add</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                                    </form>
+                                    
+                                    <div class="table-responsive">
+                                        <table id="example3" class="display table" style="width: 100%; cellspacing: 0;">
+                                            <thead>
+                                            <tr>
+                                                <th>Warehouse Name</th>
+                                                <th>Warehouse ID</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Warehouse Name</th>
+                                                <th>Warehouse ID</th>
+                                            </tr>
+                                        </tfoot>
+                                        <tbody>
+                                            <%
+                    
+                  
+        Statement st=null;
+        DBConnector db=new DBConnector();
+        st=db.getStatement();
+        try
+        {
+         
+         String query="select * from warehouse";
+         ResultSet rs=st.executeQuery(query);
+         while(rs.next())
+         {
+        %>
+                                            <tr>
+                                                <td><%out.println(rs.getString("warehouse_id"));%></td>
+                                                <td><%out.println(rs.getString("warehouse_name"));%></td>
+                                                
+                                            </tr> 
+                                            <%
+        }
+       }
+     
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        %>
+                                        </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                </div><!-- Main Wrapper -->
+                <div class="page-footer">
+                    <p class="no-s">2021 &copy; All rights reserved to Acron International</p>
+                </div>
+            </div><!-- Page Inner -->
+        </main><!-- Page Content -->
+        <nav class="cd-nav-container" id="cd-nav">
+            <header>
+                <h3>Navigation</h3>
+                <a href="#0" class="cd-close-nav">Close</a>
+            </header>
+            <ul class="cd-nav list-unstyled">
+                <li class="cd-selected" data-menu="index">
+                    <a href="sale-data.jsp">
+                        <span class="menu-icon glyphicon glyphicon-briefcase">
+                       </span>
+                        <p>Sale</p>
+                    </a>
+                </li>
+                <li data-menu="sale">
+                    <a href="transfer-data.jsp">
+                        <span class="menu-icon glyphicon glyphicon-send">
+                        </span>
+                        <p>Transfer</p>
+                    </a>
+                </li>
+                
+                <li data-menu="#">
+                    <a href="table-data.jsp">
+                        <span class="menu-icon glyphicon glyphicon-sort">
+                       </span>
+                        <p>Transaction</p>
+                    </a>
+                </li>
+                <li data-menu="#">
+                    <a href="item-data.jsp">
+                        <span class="menu-icon glyphicon glyphicon-th-list">
+                       </span>
+                        <p>Items</p>
+                    </a>
+                </li>
+                <li data-menu="calendar">
+                    <a href="warehouse.jsp">
+                        <span class="menu-icon glyphicon glyphicon-th">
+                     </span>
+                        <p>Warehouse</p>
+                    </a>
+                </li>
+                 <li data-menu="transfer">
+                    <a href="LogOutAuthenticator">
+                        <span class="menu-icon glyphicon glyphicon-log-out">
+                       </span>
+                        <p>Logout</p>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="cd-overlay"></div>
+	
+
+        <!-- Javascripts -->
+        <script src="assets/plugins/jquery/jquery-2.1.4.min.js"></script>
+        <script src="assets/plugins/jquery-ui/jquery-ui.min.js"></script>
+        <script src="assets/plugins/pace-master/pace.min.js"></script>
+        <script src="assets/plugins/jquery-blockui/jquery.blockui.js"></script>
+        <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+        <script src="assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+        <script src="assets/plugins/switchery/switchery.min.js"></script>
+        <script src="assets/plugins/uniform/jquery.uniform.min.js"></script>
+        <script src="assets/plugins/offcanvasmenueffects/js/classie.js"></script>
+        <script src="assets/plugins/offcanvasmenueffects/js/main.js"></script>
+        <script src="assets/plugins/waves/waves.min.js"></script>
+        <script src="assets/plugins/3d-bold-navigation/js/main.js"></script>
+        <script src="assets/plugins/jquery-mockjax-master/jquery.mockjax.js"></script>
+        <script src="assets/plugins/moment/moment.js"></script>
+        <script src="assets/plugins/datatables/js/jquery.datatables.min.js"></script>
+        <script src="assets/plugins/x-editable/bootstrap3-editable/js/bootstrap-editable.js"></script>
+        <script src="assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+        <script src="assets/js/modern.min.js"></script>
+        <script src="assets/js/pages/table-data.js"></script>
+        
+    </body>
+
+<!-- Mirrored from phantom-themes.com/modern/Source/admin1/table-data.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 04 Oct 2021 06:17:45 GMT -->
+</html>
